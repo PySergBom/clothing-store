@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import CASCADE
 
+from users.models import User
+
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=128)
@@ -20,3 +22,13 @@ class Products(models.Model):
 
     def __str__(self):
         return f'Продукт {self.name}, Категория: {self.category.name}, id: {self.id}'
+
+
+class Basket(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Корзина для {self.user} | Продукт: {self.product}'
