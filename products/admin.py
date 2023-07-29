@@ -10,7 +10,7 @@ class AdminProdCategory(admin.ModelAdmin):
 
 @admin.register(Products)
 class AdminProdCategory(admin.ModelAdmin):
-    list_display = ('name', 'description','price', 'quantity', 'category')
+    list_display = ('name', 'description', 'price', 'quantity', 'category')
 
 
 @admin.register(Basket)
