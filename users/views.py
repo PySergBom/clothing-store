@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
 from common.views import TitleMixin
-from products.models import Basket
 from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from users.models import EmailVerification, User
 
@@ -29,10 +28,10 @@ class UserProfileView(TitleMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('users:profile', args=(self.object.id,))
 
-    def get_context_data(self, **kwargs):
-        context = super(UserProfileView, self).get_context_data()
-        context['baskets'] = Basket.objects.filter(user=self.object)
-        return context
+    def get(self, request, *args, **kwargs):
+        if self.request.user.id != self.kwargs['pk']:
+            return HttpResponseRedirect(reverse('index'))
+        return super(UserProfileView, self).get(request, *args, **kwargs)
 
 
 class UserLoginView(TitleMixin, LoginView):
