@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
@@ -30,7 +30,7 @@ class UserProfileView(TitleMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         if self.request.user.id != self.kwargs['pk']:
-            return HttpResponseRedirect(reverse('index'))
+            return redirect(f'/users/profile/{self.request.user.id}')
         return super(UserProfileView, self).get(request, *args, **kwargs)
 
 
