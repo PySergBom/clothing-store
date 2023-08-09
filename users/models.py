@@ -1,5 +1,3 @@
-import email.header
-
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
@@ -20,7 +18,7 @@ class EmailVerification(models.Model):
     expiration = models.DateTimeField()
 
     def send_verification_email(self):
-        link = reverse('users:email_verification', kwargs={'email': self.user.email,'code': self.code})
+        link = reverse('users:email_verification', kwargs={'email': self.user.email, 'code': self.code})
         verication_link = f'{settings.DOMAIN_NAME}{link}'
         subject = 'Подтверждение учетной записи для {}'.format(self.user.username)
         message = 'Для подтверждения учетной записи для {} перейдите по ссылке {}'.format(
