@@ -1,14 +1,14 @@
-from pprint import pprint
+import stripe
+from http import HTTPStatus
 
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
-from http import HTTPStatus
 
-import stripe
 from common.views import TitleMixin
 from orders.forms import OrderForm
 from products.models import Basket
@@ -50,6 +50,25 @@ class CancelPayTemplate(TitleMixin, TemplateView):
     title = 'Store - Отмена оплаты'
 
 
+class OrderListView(TitleMixin, ListView):
+    template_name = 'orders/orders.html'
+    title = 'Store - Заказы'
+    queryset = Order.objects.all()
+    ordering = ('-created')
+
+    def get_queryset(self):
+        queryset = super(OrderListView, self).get_queryset()
+        return queryset.filter(initiator=self.request.user)
+
+class OrderDetailView(DetailView):
+    template_name = 'orders/order.html'
+    model = Order
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        context['title'] = f'Store - Заказ № {self.object.id}'
+        return context
+
 @csrf_exempt
 def stripe_webhook_view(request):
     payload = request.body
@@ -84,4 +103,4 @@ def fulfill_order(session):
     order_id = int(session.metadata.order_id)
     order = Order.objects.get(id=order_id)
     order.update_after_payment()
-    print("Fulfilling order", order_id)
+    # print("Fulfilling order", order_id)
