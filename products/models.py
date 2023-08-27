@@ -1,8 +1,7 @@
+import stripe
+from django.conf import settings
 from django.db import models
 from django.db.models import CASCADE
-from django.conf import settings
-
-import stripe
 
 from users.models import User
 
@@ -68,6 +67,7 @@ class BasketQuerySet(models.QuerySet):
             }
             line_items.append(item)
         return line_items
+
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)

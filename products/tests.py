@@ -1,9 +1,9 @@
+from http import HTTPStatus
+
 from django.test import TestCase
 from django.urls import reverse
 
-from http import HTTPStatus
-
-from products.models import Products, ProductCategory
+from products.models import ProductCategory, Products
 
 
 class IndexViewTestCase(TestCase):
@@ -37,7 +37,7 @@ class ProductsListViewTestCase(TestCase):
             list(self.products.filter(category_id=category.id))[0:3]
         )
 
-    def _common_tests(self,response):
+    def _common_tests(self, response):
         self.assertEquals(response.status_code, HTTPStatus.OK)
         self.assertEquals(response.context_data['title'], 'Store - Каталог')
         self.assertTemplateUsed(response, 'products/products.html')

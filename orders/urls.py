@@ -1,6 +1,7 @@
 from django.urls import path
 
-from orders.views import OrderCreateView, SuccessPaidTemplate, CancelPayTemplate, OrderListView, OrderDetailView
+from orders.views import (CancelPayTemplate, OrderCreateView, OrderDetailView,
+                          OrderListView, SuccessPaidTemplate)
 
 app_name = 'orders'
 urlpatterns = [
