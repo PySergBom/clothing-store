@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from common.views import TitleMixin
-from products.models import Basket, ProductCategory, Products
+from products.models import Basket, Product, ProductCategory
 
 
 class IndexView(TitleMixin, TemplateView):
@@ -14,10 +14,11 @@ class IndexView(TitleMixin, TemplateView):
 
 
 class ProductsListView(TitleMixin, ListView):
-    model = Products
+    model = Product
     template_name = 'products/products.html'
     paginate_by = 3
     title = 'Store - Каталог'
+    ordering = ('id')
 
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()  # Products.objects.all()
@@ -43,7 +44,7 @@ class ProductsListView(TitleMixin, ListView):
 
 @login_required
 def basket_add(request, product_id):
-    product = Products.objects.get(id=product_id)
+    product = Product.objects.get(id=product_id)
     baskets = Basket.objects.filter(user=request.user, product=product)
     if baskets:
         basket = Basket.objects.get(user=request.user, product=product)

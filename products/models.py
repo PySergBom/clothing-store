@@ -20,7 +20,7 @@ class ProductCategory(models.Model):
         return f' Категория {self.name}'
 
 
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -39,7 +39,7 @@ class Products(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         stripe_product_price = self.create_stripe_product_price()
         self.stripe_product_price_id = stripe_product_price['id']
-        super(Products, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def create_stripe_product_price(self):
         stripe_product = stripe.Product.create(name=self.name)
@@ -71,7 +71,7 @@ class BasketQuerySet(models.QuerySet):
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
