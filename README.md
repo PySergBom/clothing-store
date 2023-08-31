@@ -30,6 +30,6 @@ Some of the Features
 
 ## Screenshots
 
-![5](https://github.com/PySergBom/clothing-store/assets/125088101/4b556e02-ff0e-4021-8769-c3f24beb9d22)
-![2](https://github.com/PySergBom/clothing-store/assets/125088101/7483aae7-a7cb-4c9a-a745-5c0233e59a27)
-![1](https://github.com/PySergBom/clothing-store/assets/125088101/749cd37f-66ab-4b30-bc47-645d141b8c39)
+![2](https://github.com/PySergBom/clothing-store/assets/125088101/3a619f4f-2eb1-455a-b929-186698991949)
+![1](https://github.com/PySergBom/clothing-store/assets/125088101/1b8d3a3e-dbc9-4505-a3f8-0b26819b9457)
+
