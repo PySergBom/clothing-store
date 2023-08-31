@@ -25,3 +25,11 @@ Some of the Features
 <img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>	<img alt="Django" src="https://img.shields.io/badge/django%20-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white"/>	<img alt="Postgres" src ="https://img.shields.io/badge/postgres-%23316192.svg?&style=for-the-badge&logo=postgresql&logoColor=white"/>	
 <img alt="Redis" src="https://img.shields.io/badge/redis%20-%23392E20.svg?&style=for-the-badge&logo=redis&logoColor=white"/> 
 <img alt="Celery" src="https://img.shields.io/badge/celery%20-%238002E20.svg?&style=for-the-badge&logo=celery&logoColor=white"/>
+
+---
+
+## Screenshots
+
+![5](https://github.com/PySergBom/clothing-store/assets/125088101/4b556e02-ff0e-4021-8769-c3f24beb9d22)
+![2](https://github.com/PySergBom/clothing-store/assets/125088101/7483aae7-a7cb-4c9a-a745-5c0233e59a27)
+![1](https://github.com/PySergBom/clothing-store/assets/125088101/749cd37f-66ab-4b30-bc47-645d141b8c39)
